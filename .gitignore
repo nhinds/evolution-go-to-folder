@@ -47,5 +47,6 @@
 /install-sh
 /ltmain.sh
 /depcomp
-/description.pak
+/description-pak
 /*.deb
+/*.tgz
