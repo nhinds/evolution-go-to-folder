@@ -19,6 +19,6 @@ If you use a package manager, try:
 
 # Usage
 
-In evolution's mail view, hit `Ctrl+Shift+v`, type to select a folder, hit `Enter`.
+In evolution's mail view, hit `Ctrl+;`, type to select a folder, hit `Enter`.
 
 Alternatively, use the `Folder -> Go To...` menu item.

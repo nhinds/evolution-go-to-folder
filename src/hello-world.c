@@ -53,7 +53,7 @@ static GtkActionEntry menu_entries[] = {
         "go-to-mail-folder", // name
         "go-jump", // stock_id
         "Go To...", // label
-        "<Shift><Ctrl>v", // accelerator
+        "<Ctrl>semicolon", // accelerator
         "Open a dialog to go to another mail folder", // tooltip
         G_CALLBACK (action_go_to_mail_folder_cb) // callback
     },
