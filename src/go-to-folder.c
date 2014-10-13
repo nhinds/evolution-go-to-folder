@@ -182,6 +182,10 @@ action_go_to_mail_folder_cb (GtkAction *action, EShellWindow *mail_shell_window)
             // Select the folder based on its URI
             const gchar *uri = em_folder_selector_get_selected_uri(selector);
             em_folder_tree_set_selected (mail_folder_tree, uri, FALSE);
+
+            // Focus the mail list
+            EShellContent *mail_shell_content = e_shell_view_get_shell_content(mail_shell_view);
+            e_shell_content_focus_search_results(mail_shell_content);
         }
 
         gtk_widget_destroy(dialog);
