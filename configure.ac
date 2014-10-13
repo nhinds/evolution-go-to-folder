@@ -1,4 +1,4 @@
-AC_INIT([evolution-hello-world], [0.1.0], [http://nhinds.com/])
+AC_INIT([evolution-go-to-folder], [0.1.0], [https://github.com/nhinds/evolution-go-to-folder])
 AC_CONFIG_SRCDIR(src)
 
 AM_INIT_AUTOMAKE([foreign])
@@ -59,7 +59,7 @@ src/Makefile
 AC_OUTPUT
 
 echo ""
-echo "Evolution hello-world plugin successfully configured"
+echo "Evolution go-to-folder plugin successfully configured"
 echo ""
 echo "    Installation path: $MODULE_INSTALL_DIR"
 echo ""

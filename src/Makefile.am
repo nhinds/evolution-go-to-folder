@@ -10,10 +10,10 @@ AM_CPPFLAGS =                                                   \
 
 moduledir = $(MODULE_INSTALL_DIR)
 
-module_LTLIBRARIES = module-hello-world.la
+module_LTLIBRARIES = module-go-to-folder.la
 
-module_hello_world_la_SOURCES = hello-world.c
-module_hello_world_la_LIBADD = $(LIBGCONFBRIDGE_LIBS)
-module_hello_world_la_LDFLAGS = -module -avoid-version -rpath $(MODULE_INSTALL_DIR)
+module_go_to_folder_la_SOURCES = go-to-folder.c
+module_go_to_folder_la_LIBADD = $(LIBGCONFBRIDGE_LIBS)
+module_go_to_folder_la_LDFLAGS = -module -avoid-version -rpath $(MODULE_INSTALL_DIR)
 
 CLEANFILES = $(BUILT_SOURCES)

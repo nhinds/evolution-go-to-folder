@@ -6,15 +6,15 @@
 #include <libebackend/libebackend.h>
 #include "gcc-diagnostics.h"
 
-typedef struct _EHelloWorld EHelloWorld;
-typedef struct _EHelloWorldClass EHelloWorldClass;
+typedef struct _EGoToFolder EGoToFolder;
+typedef struct _EGoToFolderClass EGoToFolderClass;
 
-struct _EHelloWorld {
+struct _EGoToFolder {
         EExtension parent;
         guint ui_merge_id;
 };
 
-struct _EHelloWorldClass {
+struct _EGoToFolderClass {
         EExtensionClass parent_class;
 };
 
@@ -23,12 +23,12 @@ void e_module_load (GTypeModule *type_module);
 void e_module_unload (GTypeModule *type_module);
 
 /* Forward Declarations */
-GType e_hello_world_get_type (void);
+GType e_go_to_folder_get_type (void);
 
-G_DEFINE_DYNAMIC_TYPE (EHelloWorld, e_hello_world, E_TYPE_EXTENSION)
-#define E_HELLO_WORLD(obj) \
+G_DEFINE_DYNAMIC_TYPE (EGoToFolder, e_go_to_folder, E_TYPE_EXTENSION)
+#define E_GO_TO_FOLDER(obj) \
     (G_TYPE_CHECK_INSTANCE_CAST \
-    ((obj), e_hello_world_get_type(), EHelloWorld))
+    ((obj), e_go_to_folder_get_type(), EGoToFolder))
 
 static const gchar *ui =
 "<menubar name='main-menu'>"
@@ -40,13 +40,13 @@ static const gchar *ui =
 "</menubar>";
 
 static void
-mail_shell_view_created_cb (EShellWindow *, EShellView *, EHelloWorld *);
+mail_shell_view_created_cb (EShellWindow *, EShellView *, EGoToFolder *);
 
 static void
 action_go_to_mail_folder_cb (GtkAction *, EShellWindow *);
 
 static void
-mail_shell_view_toggled_cb (EShellView *, EHelloWorld *);
+mail_shell_view_toggled_cb (EShellView *, EGoToFolder *);
 
 static GtkActionEntry menu_entries[] = {
     {
@@ -61,12 +61,12 @@ static GtkActionEntry menu_entries[] = {
 
 
 static void
-e_hello_world_constructed (GObject *object)
+e_go_to_folder_constructed (GObject *object)
 {
         /* Chain up to parent's constructed() method. */
-        G_OBJECT_CLASS (e_hello_world_parent_class)->constructed (object);
+        G_OBJECT_CLASS (e_go_to_folder_parent_class)->constructed (object);
 
-        EHelloWorld *self = E_HELLO_WORLD(object);
+        EGoToFolder *self = E_GO_TO_FOLDER(object);
         EExtensible *extensible = e_extension_get_extensible (E_EXTENSION (object));
 
         EShellWindow *window = E_SHELL_WINDOW (extensible);
@@ -82,21 +82,21 @@ e_hello_world_constructed (GObject *object)
 }
 
 static void
-e_hello_world_finalize (GObject *object)
+e_go_to_folder_finalize (GObject *object)
 {
         /* Chain up to parent's finalize() method. */
-        G_OBJECT_CLASS (e_hello_world_parent_class)->finalize (object);
+        G_OBJECT_CLASS (e_go_to_folder_parent_class)->finalize (object);
 }
 
 static void
-e_hello_world_class_init (EHelloWorldClass *class)
+e_go_to_folder_class_init (EGoToFolderClass *class)
 {
         GObjectClass *object_class;
         EExtensionClass *extension_class;
 
         object_class = G_OBJECT_CLASS (class);
-        object_class->constructed = e_hello_world_constructed;
-        object_class->finalize = e_hello_world_finalize;
+        object_class->constructed = e_go_to_folder_constructed;
+        object_class->finalize = e_go_to_folder_finalize;
 
         /* Specify the GType of the class we're extending.
          * The class must implement the EExtensible interface. */
@@ -105,20 +105,20 @@ e_hello_world_class_init (EHelloWorldClass *class)
 }
 
 static void
-e_hello_world_class_finalize (EHelloWorldClass *class)
+e_go_to_folder_class_finalize (EGoToFolderClass *class)
 {
         /* This function is usually left empty. */
 }
 
 static void
-e_hello_world_init (EHelloWorld *extension)
+e_go_to_folder_init (EGoToFolder *extension)
 {
         /* The EShell object we're extending is not available yet,
          * but we could still do some early initialization here. */
 }
 
 static void
-mail_shell_view_created_cb (EShellWindow *window, EShellView *view, EHelloWorld *self)
+mail_shell_view_created_cb (EShellWindow *window, EShellView *view, EGoToFolder *self)
 {
         g_signal_connect(view, "toggled", G_CALLBACK(mail_shell_view_toggled_cb), self);
 
@@ -132,7 +132,7 @@ mail_shell_view_created_cb (EShellWindow *window, EShellView *view, EHelloWorld 
 }
 
 static void
-mail_shell_view_toggled_cb (EShellView *view, EHelloWorld *self)
+mail_shell_view_toggled_cb (EShellView *view, EGoToFolder *self)
 {
         EShellWindow *window = e_shell_view_get_shell_window(view);
         GtkUIManager *ui_manager = e_shell_window_get_ui_manager(window);
@@ -193,7 +193,7 @@ e_module_load (GTypeModule *type_module)
         /* This registers our EShell extension class with the GObject
          * type system.  An instance of our extension class is paired
          * with each instance of the class we're extending. */
-        e_hello_world_register_type (type_module);
+        e_go_to_folder_register_type (type_module);
 }
 
 G_MODULE_EXPORT void
